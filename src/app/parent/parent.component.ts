@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-parent',
@@ -12,11 +12,15 @@ export class ParentComponent implements OnInit {
   ngOnInit() {
   }
 
+  @ViewChild('modifyByChildInput') element: ElementRef;
+
   title = ` I'm Parent Component`;
   childTitle = `I'm Child Text From Parent Component`;
 
   onNotify(event) {
     console.log(event);
+    console.log(this.element.nativeElement);
+    this.element.nativeElement.innerHTML = event;
   }
 
 }
